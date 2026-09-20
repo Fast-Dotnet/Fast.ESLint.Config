@@ -8,6 +8,8 @@
 
 # @fast-china/eslint-config
 
+**[使用文档](http://docs.fastdotnet.cn/eslint-config/) · [官方网站](http://fastdotnet.com)**
+
 面向 Vue 3、UniApp、SDK、Node.js、React、Angular、TypeScript 与 JavaScript 项目的实用型 ESLint Flat Config。
 
 规则取舍遵循：先尊重社区通用写法并保持代码简洁、易读，再依次考虑真实 Bug / 类型安全、代码一致性和 Fast 系列项目偏好。不会为了满足 ESLint 强制改写语义正常、普遍使用的代码。
@@ -53,128 +55,27 @@ export default defineConfig([
 
 ## UniApp
 
-```js
-import { uniAppConfig } from "@fast-china/eslint-config";
-import { defineConfig } from "eslint/config";
-
-export default defineConfig([
-	...uniAppConfig,
-	{
-		name: "project/custom",
-		ignores: ["src/generated/**"],
-		rules: {
-			"no-console": "warn",
-		},
-	},
-]);
-```
-
-UniApp 入口在 Vue 完整能力之外增加 `.nvue`、`uni`、`uniCloud`、页面 API、条件编译平台 globals、`unpackage` 忽略，以及 `pages.json`、`manifest.json` 注释适配。
-
-ESLint 不执行 `#ifdef`/`#endif`，因此只能识别平台对象，不能验证对象是否位于正确的平台分支。当前不处理需要专用解析器的 `.uvue` 与 `.uts`。
+[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
 
 ## 工厂与项目覆写
 
-根入口只提供含义明确的具名配置与工厂。项目需要选择运行环境或追加覆写时使用对应工厂：
-
-```js
-import { createVueProjectConfigs, defineRules } from "@fast-china/eslint-config";
-import { defineConfig } from "eslint/config";
-
-export default defineConfig([
-	...createVueProjectConfigs({ environment: "universal" }),
-	{
-		name: "project/custom",
-		ignores: ["public/vendor/**"],
-		languageOptions: {
-			globals: {
-				__APP_VERSION__: "readonly",
-			},
-		},
-		rules: defineRules({
-			"no-console": "warn",
-		}),
-	},
-]);
-```
-
-可用工厂：
-
-- `createVueProjectConfigs(options, ...overrides)`
-- `createUniAppProjectConfigs(options, ...overrides)`
-- `createBaseConfigs(options)`：不绑定前端框架，适用于 Node.js、SDK 及其他显式组合场景
-
-`environment` 可为 `"browser"`、`"node"` 或 `"universal"`，默认是 `"browser"`。配置文件、脚本、测试和 CLI 文件始终单独获得 Node.js globals。
-
-后置 Flat Config 拥有最高优先级。`defineRules()` 不修改传入对象，只提供精确规则类型检查。
+[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
 
 ## TypeScript 策略
 
-类型感知文件必须属于 Project Service 可发现的 `tsconfig.json`。
-
-- `explicit-module-boundary-types: "error"`：`.ts`、`.mts`、`.cts` 导出函数及导出类的公共边界必须显式声明参数和返回类型。
-- `.tsx` 默认关闭模块边界类型强制：组件 Props 继续接受 TypeScript 检查，但不要求补写可稳定推断的 JSX 返回类型。
-- `explicit-function-return-type: "off"`：内部函数、局部处理函数和内联回调使用 TypeScript 推断。
-- `no-inferrable-types` 不删除参数和属性上的显式类型。
-- Vue/NVue SFC 与独立 TSX 组件不强制模块边界和函数返回类型，以保留常见简洁写法。
-- `no-floating-promises` 关闭；是否等待 Promise 由业务顺序和异常语义决定。
-- `no-void: "error"`：不使用 `void promise` 或其他 `void` 表达式规避检查。
-- `require-await: "error"`：没有真实 `await` 的函数应删除 `async`，避免改变返回值和异常语义。
-- `no-misused-promises`、`await-thenable`、unsafe 类型规则及精选的高置信度类型规则保持为错误。
-- 标准非空断言可用；矛盾、重复或无效的断言仍由专项规则检查。
-- 数字和布尔值可直接用于模板字符串；运行时防御性条件不会因类型看似多余而报错。
+[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
 
 ## JavaScript、Import 与 Vue 策略
 
-- `no-empty` 允许完全空的 `catch`，其他空代码块仍报错。
-- `camelcase: ["error", { properties: "never" }]`：变量和类型使用 camelCase，外部协议对象属性保持原名。
-- `no-eval`、`no-implied-eval`、`no-new-func`、`no-debugger` 等真实风险规则为错误。
-- `import-x/first`、`import-x/no-duplicates` 与 `import-x/order` 均为错误；声明顺序支持自动修复。
-- 保留 UniApp、Vue、React、Angular、Vite、Element Plus、Fast 和 Lodash 等常用 pathGroups，`@/**` 归入 internal，类型导入不参与 pathGroups 匹配。
-- `sort-imports` 只检查同一 import 声明 `{}` 内的成员顺序，不接管声明之间的排序。
-- `import-x/style-imports-last` 要求样式文件形成最后一个连续分组，同时不改变样式组内部顺序。
-- Vue SFC 使用官方 `flat/recommended`；显式 emits、重复键、只读 props、响应性丢失和保留组件名等脚本语义规则也应用于 Vue JSX/TSX。
-- kebab-case 属性、模板属性顺序和组件上的 `v-text`/`v-html` 仅检查 `.vue/.nvue` 模板；JSX 属性继续遵循 JavaScript 的 camelCase 约定。`no-v-html` 保持警告。
+[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
 
 ## React 与 Angular
 
-```js
-import { createBaseConfigs } from "@fast-china/eslint-config";
-import { createReactConfigs } from "@fast-china/eslint-config/configs";
-import { defineConfig } from "eslint/config";
-
-export default defineConfig([
-	...createBaseConfigs(),
-	...createReactConfigs(),
-	{
-		name: "project/custom",
-		rules: { "no-console": "warn" },
-	},
-]);
-```
-
-Angular 同理组合 `createAngularConfigs()`。基础配置不会加载 Vue 或 UniApp。
+[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
 
 ## 可选能力与清单排序
 
-Markdown 和 Lodash 导入策略需要显式组合：
-
-```js
-import { createBaseConfigs } from "@fast-china/eslint-config";
-import { createMarkdownConfigs } from "@fast-china/eslint-config/configs";
-import { defineConfig } from "eslint/config";
-
-export default defineConfig([
-	...createBaseConfigs({ environment: "node" }),
-	...createMarkdownConfigs(),
-	{
-		name: "project/custom",
-		rules: { "no-console": "warn" },
-	},
-]);
-```
-
-`createBaseConfigs()`、`vueConfig` 和 `uniAppConfig` 都默认启用 `package.json` 与 `tsconfig*.json` 排序。`package.json` 排序不会进入顺序具有运行时语义的条件 `exports` 对象。
+[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
 
 ## 公共入口
 
@@ -189,8 +90,8 @@ Prettier 不作为 ESLint 规则运行。默认配置只加载 `eslint-config-pr
 
 ## 文档
 
-- [完整规则手册](./docs/rules/index.zh.md)
-- [默认规则与风险指南](./docs/rules-risk.zh.md)
+- [完整规则手册](http://docs.fastdotnet.cn/eslint-config/rules/)
+- [默认规则与风险指南](http://docs.fastdotnet.cn/eslint-config/rules-risk)
 - [工程质量审查报告](./docs/engineering-audit.zh.md)
 - [更新日志](./CHANGELOG.md)
 
