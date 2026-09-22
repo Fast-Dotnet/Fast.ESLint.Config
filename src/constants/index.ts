@@ -95,5 +95,13 @@ export const GLOBS_NODE_TOOLING = [
 /** TypeScript 配置文件；它们使用 JSONC 语法并允许注释。 */
 export const GLOBS_TSCONFIG = ["**/tsconfig.json", "**/tsconfig.*.json"] as const;
 
-/** 不应交给 JSON/Markdown 解析器处理的包管理器锁文件。 */
-export const GLOBS_LOCKFILES = ["**/package-lock.json", "**/yarn.lock", "**/pnpm-lock.yaml", "**/bun.lock", "**/bun.lockb", "**/deno.lock"] as const;
+/** 不应交给 JSON/Markdown 解析器处理的包管理器及开发工具锁文件。 */
+export const GLOBS_LOCKFILES = [
+	"**/package-lock.json",
+	"**/yarn.lock",
+	"**/pnpm-lock.yaml",
+	"**/bun.lock",
+	"**/bun.lockb",
+	"**/deno.lock",
+	"**/skills-lock.json",
+] as const;

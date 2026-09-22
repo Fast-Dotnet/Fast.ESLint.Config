@@ -1,6 +1,6 @@
 {
 	"name": "@fast-china/eslint-config",
-	"version": "2.1.9",
+	"version": "2.1.10",
 	"description": "Practical, typed ESLint Flat Config for Vue 3, UniApp, React, Angular, Vite, TypeScript, JavaScript, and Node.js.",
 	"type": "module",
 	"keywords": [
@@ -82,7 +82,7 @@
 		"format:check": "prettier --check .",
 		"test": "pnpm run build && pnpm run test:types && pnpm run test:runtime && pnpm run test:package",
 		"test:types": "tsc --noEmit --project tests/tsconfig.json",
-		"test:runtime": "node --test tests/config.test.mjs",
+		"test:runtime": "node --test tests/config.test.mjs tests/tool-ignores.test.mjs",
 		"test:package": "node --test tests/package.test.mjs",
 		"check": "pnpm run typecheck && pnpm run docs:rules:check && pnpm run test && pnpm run lint && pnpm run format:check",
 		"prepack": "pnpm run check"

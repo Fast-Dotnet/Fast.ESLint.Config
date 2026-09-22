@@ -1,18 +1,28 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project are documented in this file.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases should follow [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## [2.1.10] - 2026-09-22
 
-## 2.1.9 - 2026-09-14
+### Fixed
+
+- Exclude root and nested `.agents` directories and `skills-lock.json` from the shared default ignores; keep Prettier ignores independent.
+
+### Documentation and Tooling
+
+- Correct localized Fast.Docs links and retain minimal README examples.
+- Align public-contract comments and agent guidance; keep licenses and `.editorconfig` unchanged.
+- Keep ESLint and Prettier skill-file ignores separate and add regression checks.
+
+## [2.1.9] - 2026-09-14
 
 ### Changed
 
 - Disabled `@typescript-eslint/switch-exhaustiveness-check` for Vue single-file components while retaining the error-level check for regular TypeScript and TSX files.
 
-## 2.1.8 - 2026-09-12
+## [2.1.8] - 2026-09-12
 
 ### Added
 
@@ -37,7 +47,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Removed the 2.x default export, `fastConfig()`, and `FastConfigOptions`; consumers now select the Vue or UniApp named configuration explicitly.
 - Removed Vue-to-UniApp capability leakage from the new Vue-only entry and removed `prefer-object-has-own` from the defaults.
 
-## 2.1.7 - 2026-09-11
+## [2.1.7] - 2026-09-11
 
 ### Added
 
@@ -47,7 +57,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - Allowed Promise-returning event handlers in Vue templates and TSX attributes while retaining all other `no-misused-promises` checks.
 
-## 2.1.6 - 2026-09-11
+## [2.1.6] - 2026-09-11
 
 ### Added
 
@@ -63,31 +73,31 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Reduced syntax-only enforcement for type declarations, indexed objects, literal class properties, RegExp calls, dynamic object deletion, and static utility classes; deprecated APIs and apparently unnecessary runtime guards now warn instead of blocking builds.
 - Updated runtime and development dependencies to their latest compatible releases while retaining TypeScript 6, tsdown 0.22, and the existing peer compatibility ranges.
 
-## 2.1.5 - 2026-09-01
+## [2.1.5] - 2026-09-01
 
 ### Changed
 
 - Unified `extraFileExtensions: [".vue", ".nvue"]` across type-aware TypeScript, TSX, Vue, and NVue parsing so Project Service does not reload the project while linting mixed file types.
 
-## 2.1.4 - 2026-08-30
+## [2.1.4] - 2026-08-30
 
 ### Changed
 
 - Classified `@/**` root aliases as leading internal imports and moved the `type` group after every other non-style import group, while styles remain in their final stable group.
 
-## 2.1.3 - 2026-08-29
+## [2.1.3] - 2026-08-29
 
 ### Changed
 
 - Enabled `import-x/order` `sortTypesGroup` so separate type imports retain the final type group while sorting by their original source category within it.
 
-## 2.1.2 - 2026-08-29
+## [2.1.2] - 2026-08-29
 
 ### Changed
 
 - Changed `@typescript-eslint/consistent-type-imports` fixes from inline type specifiers to separate `import type` declarations.
 
-## 2.1.1 - 2026-08-29
+## [2.1.1] - 2026-08-29
 
 ### Added
 
@@ -98,7 +108,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Expanded the inline documentation for local ESLint rules and scoped overrides, including their purpose, important exceptions, and ownership of duplicate React checks.
 - Excluded stylesheet imports from `import-x/order` while preserving its grouping, alphabetizing, and `warnOnUnassignedImports` checks for all other imports.
 
-## 2.1.0 - 2026-08-26
+## [2.1.0] - 2026-08-26
 
 ### Added
 
@@ -125,27 +135,27 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - Removed `defaultConfigOptions`, root language/framework/plugin switches, factory-level rules/globals/ignores, `typeChecked`, and `tsconfigRootDir`. Native trailing Flat Config and focused factories replace these wrapper options.
 
-## 2.0.10 - 2026-08-19
+## [2.0.10] - 2026-08-19
 
 ### Changed
 
 - Changed the default export to a ready-to-use Flat Config array that can be exported directly or spread into another configuration; configurable usage remains available through the named `fastConfig()` export.
 - Enabled Markdown, `package.json` sorting, and `tsconfig*.json` sorting by default while keeping React and Angular disabled by default.
 
-## 2.0.9 - 2026-08-10
+## [2.0.9] - 2026-08-10
 
 ### Changed
 
 - Allowed type-aware TypeScript configurations to forward `unknown` Promise rejection reasons without disabling `prefer-promise-reject-errors` for statically known non-`Error` values.
 
-## 2.0.8 - 2026-08-09
+## [2.0.8] - 2026-08-09
 
 ### Changed
 
 - Added prioritized import path groups for the uni-app, Vue, Element Plus, Fast Element Plus, Fast China, and Lodash ecosystems while keeping type-only imports in the dedicated type group.
 - Changed import group spacing to a compact no-blank-line style and normalized the repository imports to the new policy.
 
-## 2.0.7 - 2026-08-08
+## [2.0.7] - 2026-08-08
 
 ### Changed
 
@@ -153,7 +163,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Removed `src` and declaration maps that referenced unpublished source files while retaining self-contained runtime source maps.
 - Added package-contract coverage for the publish allowlist and source-map integrity.
 
-## 2.0.6 - 2026-08-04
+## [2.0.6] - 2026-08-04
 
 ### Changed
 
@@ -161,14 +171,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Simplified the test pipeline to runtime, type-contract, and package-contract verification by removing documentation- and comment-governance tests.
 - Included contribution and security documents in the published package and refreshed the engineering guidance for the current workflow.
 
-## 2.0.5 - 2026-08-02
+## [2.0.5] - 2026-08-02
 
 ### Changed
 
 - Upgraded public API documentation to complete TSDoc, including standard defaults, parameters, return values, thrown errors, remarks, examples, and package-level documentation.
 - Separated runtime, type-contract, rule-governance, and package-contract tests, and replaced the hard-coded release version assertion with SemVer and changelog consistency checks.
 
-## 2.0.4 - 2026-08-02
+## [2.0.4] - 2026-08-02
 
 ### Added
 
@@ -184,21 +194,21 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Changed `createGlobalIgnores()` to return a config array like the other fragment factories, so direct composition consistently uses spread syntax.
 - Updated `@eslint-react/eslint-plugin`, `@eslint/config-inspector`, and `globals` within their existing compatible version ranges.
 
-## 2.0.3 - 2026-07-29
+## [2.0.3] - 2026-07-29
 
 ### Changed
 
 - Renamed the internal factory directory from `src/code` to the clearer `src/core` and updated all source and type-generation imports.
 - Expanded JSDoc for public and internal configuration interfaces, covering defaults, activation conditions, file scopes, option interactions, performance tradeoffs, and behavior intentionally left to project tooling.
 
-## 2.0.2 - 2026-07-29
+## [2.0.2] - 2026-07-29
 
 ### Changed
 
 - Moved the `fastConfig()` factory implementation to `src/code/index.ts` so the source layout groups the primary code entry consistently.
 - Inlined `defineRules()` into the root entry and kept `@fast-china/eslint-config/rules` focused on the documented raw rule records and generated `RuleOptions` type.
 
-## 2.0.1 - 2026-07-26
+## [2.0.1] - 2026-07-26
 
 ### Added
 
@@ -212,7 +222,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Raised the verified runtime baselines to Node.js 22.18.0 and 24.11.0 to match the current tsdown toolchain.
 - Updated the development baseline to ESLint 10.8.0, then upgraded `actions/checkout` plus `actions/setup-node` to their current v7 major releases.
 
-## 2.0.0 - 2026-07-26
+## [2.0.0] - 2026-07-26
 
 ### Added
 
@@ -230,3 +240,26 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - Raised the minimum supported Node.js version to 22.13.0 so the package, local development workflow, and pnpm 11 CI use one consistent runtime baseline.
 - Upgraded `pnpm/action-setup` to v6 so GitHub Actions uses its Node.js 24 runtime without Node.js 20 deprecation warnings.
+
+[2.1.10]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.9...v2.1.10
+[2.1.9]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.8...v2.1.9
+[2.1.8]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.7...v2.1.8
+[2.1.7]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.6...v2.1.7
+[2.1.6]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.5...v2.1.6
+[2.1.5]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.4...v2.1.5
+[2.1.4]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.3...v2.1.4
+[2.1.3]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.2...v2.1.3
+[2.1.2]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.1...v2.1.2
+[2.1.1]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.1.0...v2.1.1
+[2.1.0]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.10...v2.1.0
+[2.0.10]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.9...v2.0.10
+[2.0.9]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.8...v2.0.9
+[2.0.8]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.7...v2.0.8
+[2.0.7]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.6...v2.0.7
+[2.0.6]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.5...v2.0.6
+[2.0.5]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.4...v2.0.5
+[2.0.4]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.3...v2.0.4
+[2.0.3]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.2...v2.0.3
+[2.0.2]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.1...v2.0.2
+[2.0.1]: https://gitee.com/FastDotnet/fast.eslint.config/compare/v2.0.0...v2.0.1
+[2.0.0]: https://gitee.com/FastDotnet/fast.eslint.config/releases/tag/v2.0.0

@@ -1,18 +1,20 @@
-<p align="left">
-	<a href="./README.zh.md">简体中文</a> | <strong>English</strong>
-</p>
+[简体中文](./README.zh.md) | **English**
 
 <p align="center">
-	<img src="./Fast.png" alt="logo" width="160" />
+	<img src="./Fast.png" width="128" alt="Fast.ESLint.Config Logo" />
 </p>
 
-# @fast-china/eslint-config
+<h1 align="center">Fast.ESLint.Config</h1>
 
-**[Documentation](http://docs.fastdotnet.cn/eslint-config/) · [Official website](http://fastdotnet.com)**
+<p align="center">
+	<a href="https://www.npmjs.com/package/@fast-china/eslint-config"><img src="https://img.shields.io/npm/v/@fast-china/eslint-config?logo=npm" alt="npm version" /></a>
+	<a href="https://www.npmjs.com/package/@fast-china/eslint-config"><img src="https://img.shields.io/npm/dm/@fast-china/eslint-config" alt="npm downloads" /></a>
+	<a href="./LICENSE"><img src="https://img.shields.io/npm/l/@fast-china/eslint-config" alt="License" /></a>
+</p>
 
-A practical ESLint Flat Config for Vue 3, UniApp, SDKs, Node.js, React, Angular, TypeScript, and JavaScript projects.
+Typed ESLint Flat Config for Vue 3, uni-app, TypeScript and Node.js, with optional framework integrations.
 
-The policy starts from common ecosystem conventions and concise, readable code. It then prioritizes real bugs and type safety, consistency, and finally Fast project preferences. It does not force unusual rewrites merely to satisfy ESLint.
+**[Documentation](http://docs.fastdotnet.cn/en-US/frontend/eslint-config/) · [Official website](http://fastdotnet.com)**
 
 ## Highlights
 
@@ -30,11 +32,15 @@ The policy starts from common ecosystem conventions and concise, readable code. 
 - ESLint `^10.0.0`
 - TypeScript `^6.0.0`
 
+## Installation
+
 ```sh
 pnpm add -D eslint typescript @fast-china/eslint-config
 ```
 
-## Vue 3
+## Quick start
+
+Create `eslint.config.mjs` in the Vue 3 project:
 
 ```js
 import { vueConfig } from "@fast-china/eslint-config";
@@ -44,38 +50,43 @@ export default defineConfig([
 	...vueConfig,
 	{
 		name: "project/custom",
-		rules: {
-			"no-console": "warn",
-		},
+		rules: {},
 	},
 ]);
 ```
 
-This entry covers JavaScript, type-aware TypeScript, Vue SFCs, and standalone `.jsx`/`.tsx` components used by Vue projects. Vue JSX/TSX keeps checks for explicit emits, duplicate keys, readonly props, reactivity loss, and reserved component names without inheriting template-only kebab-case, attribute-order, or `v-text`/`v-html` rules. The entry also includes JSON, Import, RegExp, `.gitignore`, and Prettier compatibility without loading UniApp capabilities.
+```sh
+pnpm exec eslint .
+```
 
-## UniApp
+Type-aware source files must belong to the project tsconfig. The Vue configuration does not include uni-app capabilities.
 
-[Full configuration and examples](http://docs.fastdotnet.cn/eslint-config/guide.en)
+## Common usage
 
-## Factories and project overrides
+Use the independent uni-app entry rather than stacking both complete configurations:
 
-[Full configuration and examples](http://docs.fastdotnet.cn/eslint-config/guide.en)
+```js
+import { uniAppConfig } from "@fast-china/eslint-config";
+import { defineConfig } from "eslint/config";
 
-## TypeScript policy
+export default defineConfig([
+	...uniAppConfig,
+	{
+		name: "project/custom",
+		rules: {},
+	},
+]);
+```
 
-[Full configuration and examples](http://docs.fastdotnet.cn/eslint-config/guide.en)
+For framework-independent Node.js projects:
 
-## JavaScript, Import, and Vue policy
+```js
+import { createBaseConfigs } from "@fast-china/eslint-config";
 
-[Full configuration and examples](http://docs.fastdotnet.cn/eslint-config/guide.en)
+export default createBaseConfigs({ environment: "node" });
+```
 
-## React and Angular
-
-[Full configuration and examples](http://docs.fastdotnet.cn/eslint-config/guide.en)
-
-## Optional capabilities and manifest sorting
-
-[Full configuration and examples](http://docs.fastdotnet.cn/eslint-config/guide.en)
+Append project configuration after the shared preset; leave `rules: {}` empty until project-specific rules are needed. Use the configuration factories to customize the runtime environment. Fast repositories maintaining local rule copies continue following their own AGENTS.md synchronization policy.
 
 ## Public entries
 
@@ -90,8 +101,8 @@ Prettier does not run as an ESLint rule. The defaults only load `eslint-config-p
 
 ## Documentation
 
-- [Complete rule reference (Chinese)](http://docs.fastdotnet.cn/eslint-config/rules/)
-- [Default rules and risk guide](http://docs.fastdotnet.cn/eslint-config/rules-risk.en)
+- [Complete rule reference (Chinese)](http://docs.fastdotnet.cn/en-US/frontend/eslint-config/rules/)
+- [Default rules and risk guide](http://docs.fastdotnet.cn/en-US/frontend/eslint-config/rules-risk)
 - [Chinese engineering audit](./docs/engineering-audit.zh.md)
 - [Changelog](./CHANGELOG.md)
 
@@ -104,3 +115,17 @@ pnpm install --frozen-lockfile
 pnpm typegen
 pnpm check
 ```
+
+## Contribution and security
+
+[Contributing](./CONTRIBUTING.md) · [Security policy](./SECURITY.md)
+
+## Copyright, license and use
+
+Copyright © 2018-Now 小方. This project uses [Apache License 2.0](./LICENSE). Use, modification, distribution and commercial use are permitted subject to its terms.
+
+When redistributing, provide the license, mark modified files and preserve applicable copyright, attribution and supplied NOTICE information as required. This summary does not replace the license or impose additional UI attribution.
+
+Users are responsible for the legal compliance and authorization of their own modifications, deployment, data processing and operations. This reminder is not an additional license condition.
+
+Except as required by applicable law or agreed in writing, the software is provided on an "AS IS" basis. Sections 7 and 8 govern warranty disclaimers and liability limits. Providing the project does not endorse downstream activities or assume users' contractual commitments. This statement does not exclude liability that cannot lawfully be excluded.

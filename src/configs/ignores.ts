@@ -3,7 +3,7 @@ import eslintConfigFlatGitignore from "eslint-config-flat-gitignore";
 import { GLOBS_LOCKFILES } from "../constants";
 
 /**
- * 默认忽略依赖、构建结果、缓存、生成文件和包管理器锁文件。
+ * 默认忽略依赖、构建结果、缓存、生成文件、AI 技能内容和工具锁文件。
  *
  * @remarks
  * 不忽略 `src`、`public`、测试夹具或普通 Markdown 文档，避免共享配置静默漏检
@@ -14,6 +14,7 @@ export const DEFAULT_IGNORE_PATTERNS = Object.freeze([
 	"**/{dist,build,coverage,output,temp,tmp}/**",
 	"**/{.cache,.nuxt,.output,.vercel,.nitro}/**",
 	"**/{.vitepress/cache,.vite-inspect}/**",
+	"**/.agents/**",
 	"**/__snapshots__/**",
 	"**/*.min.*",
 	"**/auto-import?(s).d.ts",

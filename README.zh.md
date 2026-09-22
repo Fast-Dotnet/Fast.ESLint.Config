@@ -1,18 +1,20 @@
-<p align="left">
-	<strong>简体中文</strong> | <a href="./README.md">English</a>
-</p>
+**简体中文** | [English](./README.md)
 
 <p align="center">
-	<img src="./Fast.png" alt="logo" width="160" />
+	<img src="./Fast.png" width="128" alt="Fast.ESLint.Config Logo" />
 </p>
 
-# @fast-china/eslint-config
+<h1 align="center">Fast.ESLint.Config</h1>
 
-**[使用文档](http://docs.fastdotnet.cn/eslint-config/) · [官方网站](http://fastdotnet.com)**
+<p align="center">
+	<a href="https://www.npmjs.com/package/@fast-china/eslint-config"><img src="https://img.shields.io/npm/v/@fast-china/eslint-config?logo=npm" alt="npm version" /></a>
+	<a href="https://www.npmjs.com/package/@fast-china/eslint-config"><img src="https://img.shields.io/npm/dm/@fast-china/eslint-config" alt="npm downloads" /></a>
+	<a href="./LICENSE"><img src="https://img.shields.io/npm/l/@fast-china/eslint-config" alt="License" /></a>
+</p>
 
-面向 Vue 3、UniApp、SDK、Node.js、React、Angular、TypeScript 与 JavaScript 项目的实用型 ESLint Flat Config。
+面向 Vue 3、uni-app、TypeScript 与 Node.js 的 ESLint Flat Config，提供按需框架配置与规则类型。
 
-规则取舍遵循：先尊重社区通用写法并保持代码简洁、易读，再依次考虑真实 Bug / 类型安全、代码一致性和 Fast 系列项目偏好。不会为了满足 ESLint 强制改写语义正常、普遍使用的代码。
+**[使用文档](http://docs.fastdotnet.cn/zh-CN/frontend/eslint-config/) · [官方网站](http://fastdotnet.com)**
 
 ## 特性
 
@@ -30,11 +32,15 @@
 - ESLint `^10.0.0`
 - TypeScript `^6.0.0`
 
+## 安装
+
 ```sh
 pnpm add -D eslint typescript @fast-china/eslint-config
 ```
 
-## Vue 3
+## 快速开始
+
+在 Vue 3 项目中创建 `eslint.config.mjs`：
 
 ```js
 import { vueConfig } from "@fast-china/eslint-config";
@@ -44,38 +50,43 @@ export default defineConfig([
 	...vueConfig,
 	{
 		name: "project/custom",
-		rules: {
-			"no-console": "warn",
-		},
+		rules: {},
 	},
 ]);
 ```
 
-该入口处理 JavaScript、类型感知 TypeScript、Vue SFC，以及 Vue 项目常用的独立 `.jsx`/`.tsx` 组件文件；Vue JSX/TSX 继续检查显式 emits、重复键、只读 props、响应性丢失和保留组件名，但不会套用模板专属的 kebab-case、模板属性排序或 `v-text`/`v-html` 规则。配置同时包含 JSON、Import、RegExp、`.gitignore` 和 Prettier 兼容规则，但不包含任何 UniApp 能力。
+```sh
+pnpm exec eslint .
+```
 
-## UniApp
+类型感知检查的源码应属于项目 tsconfig 范围。Vue 配置不包含 uni-app 平台能力。
 
-[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
+## 常见用法
 
-## 工厂与项目覆写
+uni-app 使用独立入口，不与 Vue 完整配置叠加：
 
-[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
+```js
+import { uniAppConfig } from "@fast-china/eslint-config";
+import { defineConfig } from "eslint/config";
 
-## TypeScript 策略
+export default defineConfig([
+	...uniAppConfig,
+	{
+		name: "project/custom",
+		rules: {},
+	},
+]);
+```
 
-[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
+不绑定框架的 Node.js 项目：
 
-## JavaScript、Import 与 Vue 策略
+```js
+import { createBaseConfigs } from "@fast-china/eslint-config";
 
-[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
+export default createBaseConfigs({ environment: "node" });
+```
 
-## React 与 Angular
-
-[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
-
-## 可选能力与清单排序
-
-[完整配置与示例](http://docs.fastdotnet.cn/eslint-config/guide)
+将项目自定义配置放在共享配置之后；`rules: {}` 留给项目按需填写。需要调整运行环境时，可使用配置工厂。Fast 生态的本地规则副本继续按各仓库 AGENTS.md 同步，不因示例而改成安装配置包。
 
 ## 公共入口
 
@@ -90,8 +101,8 @@ Prettier 不作为 ESLint 规则运行。默认配置只加载 `eslint-config-pr
 
 ## 文档
 
-- [完整规则手册](http://docs.fastdotnet.cn/eslint-config/rules/)
-- [默认规则与风险指南](http://docs.fastdotnet.cn/eslint-config/rules-risk)
+- [完整规则手册](http://docs.fastdotnet.cn/zh-CN/frontend/eslint-config/rules/)
+- [默认规则与风险指南](http://docs.fastdotnet.cn/zh-CN/frontend/eslint-config/rules-risk)
 - [工程质量审查报告](./docs/engineering-audit.zh.md)
 - [更新日志](./CHANGELOG.md)
 
@@ -104,3 +115,17 @@ pnpm install --frozen-lockfile
 pnpm typegen
 pnpm check
 ```
+
+## 贡献与安全
+
+[贡献指南](./CONTRIBUTING.md) · [安全策略](./SECURITY.md)
+
+## 版权、许可证与使用声明
+
+版权所有 © 2018-Now 小方。本项目依据 [Apache License 2.0](./LICENSE) 开源；在遵守许可证的前提下，可以使用、修改和分发本软件，包括商业使用。
+
+再分发时，应按许可证要求提供许可证副本、对修改的文件作出显著说明，并保留适用的版权和归属声明；包含需要保留的 NOTICE 信息时一并处理。本说明不替代正式许可证，也不额外要求在产品界面展示作者或项目标识。
+
+使用者应就自身使用、二次开发、部署、数据处理及运营活动遵守适用法律和第三方合法权益，自行取得依法需要的授权。上述内容为合规提醒，不构成附加许可条件。
+
+除适用法律另有规定或另有书面约定外，本软件按“原样”提供；保证排除与责任限制以许可证第 7、8 条为准。提供本项目不代表原作者为使用者的二次开发和运营活动背书，也不当然承担其对第三方作出的合同承诺。本说明不排除依法不得排除的责任。
