@@ -7,7 +7,7 @@ import { angularRules, angularTemplateAccessibilityRules, angularTemplateRules }
 import type { ESLint, Linter } from "eslint";
 
 /**
- * Angular TypeScript 源码与 HTML 模板检查的细分选项。
+ * Angular TypeScript 源码与 HTML 模板检查的细分选项
  *
  * @remarks
  * 该对象直接传给 `createAngularConfigs()`。Angular 配置始终包含框架 TypeScript 规则

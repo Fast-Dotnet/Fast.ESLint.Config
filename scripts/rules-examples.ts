@@ -4,7 +4,7 @@ export interface ReviewedRuleExample {
 	bad: string;
 	/** 按规则要求修正后的对应代码。 */
 	good: string;
-	/** Markdown 代码块语言。 */
+	/** Markdown 代码块语言 */
 	language: string;
 }
 

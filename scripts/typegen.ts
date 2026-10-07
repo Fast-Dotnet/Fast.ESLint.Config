@@ -14,7 +14,7 @@ const checkOnly = process.argv.includes("--check");
 
 const corePlugin: ESLint.Plugin = {
 	// ESLint 暂无公开 API 可枚举核心规则，类型生成需要集中读取该完整 schema。
-	// eslint-disable-next-line @typescript-eslint/no-deprecated
+	// eslint-disable-next-line @typescript-eslint/no-deprecated -- ESLint 暂无可枚举核心规则 schema 的非弃用公开 API
 	rules: Object.fromEntries(builtinRules.entries()),
 };
 

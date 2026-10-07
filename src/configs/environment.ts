@@ -13,7 +13,7 @@ import type { Linter } from "eslint";
 export type RuntimeEnvironment = "browser" | "node" | "universal";
 
 /**
- * 运行时全局变量配置片段的选项。
+ * 运行时全局变量配置片段的选项
  *
  * @remarks
  * 固定项目组合会根据自身处理的语言和框架传入 `files`、`nodeFiles`。该接口仍保持独立，

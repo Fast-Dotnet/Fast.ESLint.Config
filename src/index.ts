@@ -49,7 +49,7 @@ export const defineRules = <const Rules extends RuleOptions>(rules: RejectUnknow
 
 export type { RuleOptions } from "./typegen";
 
-/** Vue、UniApp 与框架无关项目完整配置共享的运行环境选项。 */
+/** Vue、UniApp 与框架无关项目完整配置共享的运行环境选项 */
 export interface ProjectConfigOptions {
 	/**
 	 * 应用代码实际运行的环境。配置、脚本、测试和 CLI 文件始终单独获得 Node.js globals。

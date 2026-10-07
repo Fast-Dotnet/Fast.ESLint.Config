@@ -6,7 +6,7 @@ import { reactRules } from "../rules";
 import type { Linter } from "eslint";
 
 /**
- * React 与兼容 JSX 运行时的检测设置。
+ * React 与兼容 JSX 运行时的检测设置
  *
  * @remarks
  * 该对象直接传给 `createReactConfigs()`，用于调整 React 运行时识别设置。配置会在

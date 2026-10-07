@@ -513,7 +513,7 @@ const readLocalRuleDocumentation = async (): Promise<Map<string, string>> => {
 const resolveRuleMeta = (ruleId: string, plugins: Record<string, ESLintTypes.Plugin>): RuleMeta | undefined => {
 	const definition: unknown = !ruleId.includes("/")
 		? // ESLint 暂无用于枚举核心规则的非弃用公开 API，生成文档需要读取内置规则元数据。
-			// eslint-disable-next-line @typescript-eslint/no-deprecated
+			// eslint-disable-next-line @typescript-eslint/no-deprecated -- 生成文档需要读取内置规则元数据，暂无非弃用公开 API
 			builtinRules.get(ruleId)
 		: Object.keys(plugins)
 				.filter((pluginName) => ruleId.startsWith(`${pluginName}/`))
